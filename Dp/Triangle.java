@@ -3,7 +3,7 @@ package Dp;
 import java.util.List;
 
 public class Triangle {
-    public static void helper(List<List<Integer>> triangle){
+    public static int helper(List<List<Integer>> triangle){
         for(int i=triangle.size()-2;i>=0;i--){
             for(int j=0;j<triangle.get(i).size();j++){
                 int minvalue=java.lang.Math.min(triangle.get(i+1).get(j),triangle.get(i+1).get(j+1));
