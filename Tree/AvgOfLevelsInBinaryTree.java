@@ -3,7 +3,8 @@ package Tree;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Queue;
+import java.util.LinkedList;
 public class AvgOfLevelsInBinaryTree {
      public class TreeNode {
              int val;
@@ -19,6 +20,34 @@ public class AvgOfLevelsInBinaryTree {
          }
     public static void main(String[] args) {
         
+    }
+    public static List<Double> using_BFS(TreeNode root){
+        List<Double> result = new ArrayList<>();
+        if (root == null) return result;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            double sum = 0;
+
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode currentNode = queue.poll();
+                sum += currentNode.val;
+
+                if (currentNode.left != null) {
+                    queue.offer(currentNode.left);
+                }
+                if (currentNode.right != null) {
+                    queue.offer(currentNode.right);
+                }
+            }
+
+            result.add(sum / levelSize);
+        }
+
+        return result;
     }
     public static void mapping(TreeNode root, HashMap<Integer, ArrayList<Integer>> arr, int lv) {
         if (root == null) {
