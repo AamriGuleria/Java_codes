@@ -17,16 +17,34 @@ public class SumOfDeepestNodes {
                  this.right = right;
              }
          }
-    public int deepestLeavesSum(TreeNode root) {
-        HashMap<Integer,ArrayList<Integer>> hm=new HashMap<>();
-        count(root,hm,0);
-        int maxKey = Collections.max(hm.keySet());
-        int sum=0;
-        for(int i:hm.get(maxKey)){
-            sum+=i;
+         public int deepestLeavesSum(TreeNode root) {
+            int maxdepth=getMaxDepth(root);
+            return findsum(root,maxdepth,0);
         }
-        return sum;
-    }
+        private int getMaxDepth(TreeNode node) {
+            if (node == null) return 0;
+            return 1 + Math.max(getMaxDepth(node.left), getMaxDepth(node.right));
+        }
+        public static int findsum(TreeNode root,int maxdepth,int currdepth){
+            if(root==null){
+                return 0;
+            }
+            if(currdepth==maxdepth-1){
+                return root.val;
+            }
+            return findsum(root.left,maxdepth,currdepth+1)+
+            findsum(root.right,maxdepth,currdepth+1);
+        }
+    // public int deepestLeavesSum(TreeNode root) {
+    //     HashMap<Integer,ArrayList<Integer>> hm=new HashMap<>();
+    //     count(root,hm,0);
+    //     int maxKey = Collections.max(hm.keySet());
+    //     int sum=0;
+    //     for(int i:hm.get(maxKey)){
+    //         sum+=i;
+    //     }
+    //     return sum;
+    // }
     public static void count(TreeNode root,HashMap<Integer,ArrayList<Integer>> hm,int lv){
         if(root==null){
             return;
