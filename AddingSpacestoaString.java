@@ -13,4 +13,13 @@ public class AddingSpacestoaString {
         }
         return newstr;
     }
+    public String addSpacesBruteForce2(String s, int[] spaces) {
+        String newstr="";
+        int pointer=0;
+        for(int i=0;i<spaces.length;i++){
+            newstr=newstr+s.substring(pointer,spaces[i])+" ";
+            pointer=spaces[i];
+        }
+        return newstr+s.substring(pointer);
+    }
 }
