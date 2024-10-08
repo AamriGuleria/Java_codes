@@ -1,5 +1,5 @@
 public class LongerContiguousSegmentsofOnesthanZeros {
-    public boolean checkZeroOnesOptimized(String s) {
+    public boolean checkZeroOnesOptimized(String s) { 
         int maxZeroes=0;
         int currZeroes=0;
         int currOnes=0;
